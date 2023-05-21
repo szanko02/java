@@ -1,5 +1,6 @@
 import by.gsu.pms.Business;
 
+
 public class Runner {
     public static void main(String[] args) {
         int duration;
