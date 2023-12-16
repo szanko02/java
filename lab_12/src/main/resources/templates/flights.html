@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Flights</title>
+    <style>
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: xx-large;
+            background-image: url('https://storage.picsave.pp.ua/cluster1/origin/471061905836bbc22d25ff838f6ba24e.jpg');
+            background-size: cover;
+            background-position: initial;
+        }
+
+        .table-container {
+            max-height: 70vh;
+            width: 90vw;
+            overflow: auto;
+            margin-top: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: large;
+        }
+
+        th,
+        td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            position: sticky;
+            top: 0;
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+
+        tr {
+            background-color: #e6e6e6;
+        }
+
+        tr:hover {
+            background-color: #f2f2f2;
+        }
+
+        .buttons-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .button {
+            padding: 5px 10px;
+            background-color: rgba(131, 149, 210, 0.9);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 10px;
+            text-decoration: none;
+        }
+
+        .button:hover {
+            background-color: rgba(131, 149, 210, 0.9);
+        }
+
+        .home-btn {
+            position: absolute;
+            top: 2%;
+            left: 95%;
+        }
+    </style>
+</head>
+<body class="container">
+<button class="home-btn" style="width: 50px; height: 50px; padding: 0; border: none; background: none;">
+    <a th:href="@{/home}" style="display: flex; justify-content: center; align-items: center; width: 100%; height: 100%;">
+        <img style="width: 100%; height: 100%; object-fit: contain;" src="https://cdn-icons-png.flaticon.com/512/60/60817.png" alt="home"/>
+    </a>
+</button>
+<h1>Рейсы</h1>
+
+<div class="table-container">
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Откуда</th>
+            <th>Куда</th>
+            <th>Самолёт</th>
+            <th>Места</th>
+        </tr>
+        <tr th:each="flight : ${flights}" onclick="selectFlight(this)">
+            <td class="flight-id" th:text="${flight.id}"></td>
+            <td th:text="${flight.start}"></td>
+            <td th:text="${flight.destination}"></td>
+            <td th:text="${flight.airplane}"></td>
+            <td th:text="${flight.seats}"></td>
+        </tr>
+    </table>
+</div>
+
+<div class="buttons-container">
+    <a class="button" th:href="@{/flights/add}">Добавить</a>
+    <a class="button" th:href="@{/flights/edit}">Изменить</a>
+</div>
+</body>
+</html>
